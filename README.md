@@ -8,6 +8,7 @@ Example
 
 You have the following XML:
 
+```
 <rdr>
   <details>
     <detail>
@@ -20,9 +21,11 @@ You have the following XML:
     </detail>
   </details>
 </rdr>
+```
 
 and you want to get at the version and resolution values.  You create the following POJO, and annotate as you can see below:
 
+```
 public class BasicBean {
 
 	@Xpath("//detail[name='version']/value")
@@ -40,14 +43,17 @@ public class BasicBean {
 	}
 	
 }
+```
 
-then, to trigger this make the following calls (where XML_FILE is the location of the file):
+then, to trigger this make the following calls (where `XML_FILE` is the location of the file):
 
+```
 FileInputStream fin = new FileInputStream(XML_FILE);
 XmlMarshaller<BasicBean> marshall = new XmlMarshaller<BasicBean>(BasicBean.class);
 BasicBean bean = marshall.read(fin);
 
 assert("15.0".equals(bean.getVersion()));
 assert("1080X1920".equals(bean.getResolution));
+```
 
 XmlMarshaller.read takes an InputStream.  The asserts demonstrate what you'd see populated inside the bean.
