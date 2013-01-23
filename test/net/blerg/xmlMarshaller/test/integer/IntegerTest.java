@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 
 public class IntegerTest extends TestCase{
 
-	private static final String XML_FILE = "testResources"+File.separator+"basic.xml";
+	private static final String XML_FILE = "testResources"+File.separator+"integer.xml";
 	
 	@Test
 	public void testBasic() {
@@ -22,8 +22,10 @@ public class IntegerTest extends TestCase{
 			IntegerBean bean =marshall.read(fin);
 			
 			assertEquals(new Integer(15), bean.getVersion());
-			assertEquals(1080, bean.getHeight());
-			assertEquals(1920, bean.getWidth());
+			assertEquals(1920, bean.getHeight());
+			assertEquals(1080, bean.getWidth());
+			
+			assertEquals(0, bean.getFail());
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

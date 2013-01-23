@@ -12,6 +12,9 @@ public class IntegerBean {
 
 	@Xpath("//detail[name='height']/value")
 	private int height;
+	
+	@Xpath("//detail[name='fail']/value")
+	private int fail;
 
 	public Integer getVersion() {
 		return version;
@@ -25,4 +28,7 @@ public class IntegerBean {
 		return height;
 	}
 
+	public int getFail() {
+		return fail;
+	}
 }

@@ -12,5 +12,9 @@
         <name>height</name>
         <value>1920</value>
     </detail>
+    <detail>
+        <name>fail</name>
+        <value>this should fail</value>
+    </detail>
   </details>
 </rdr>
