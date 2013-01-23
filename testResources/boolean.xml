@@ -1,0 +1,21 @@
+<rdr>
+	<alias>1234</alias>
+  <details>
+    <detail>
+        <name>version</name>
+        <value>15.0</value>
+    </detail>
+    <detail>
+        <name>resolution</name>
+        <value>1080X1920</value>
+    </detail>
+    <detail>
+        <name>installed</name>
+        <value>1</value>
+    </detail>
+    <detail>
+        <name>enabled</name>
+        <value>0</value>
+    </detail>
+  </details>
+</rdr>
