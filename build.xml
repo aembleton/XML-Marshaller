@@ -1,0 +1,17 @@
+<project default="jar">
+
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="bin"/>
+        <javac srcdir="src" destdir="bin"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <jar destfile="xmlMarshaller-0.1.0.jar" basedir="bin">
+        </jar>
+    </target>
+
+</project>
