@@ -19,7 +19,7 @@ public class BasicTest extends TestCase{
 		XmlMarshaller<BasicBean> marshall = new XmlMarshaller<BasicBean>(BasicBean.class);
 		try {
 			FileInputStream fin = new FileInputStream(XML_FILE);
-			BasicBean bean =marshall.read(fin);
+			BasicBean bean = marshall.read(fin);
 			
 			assertEquals("15.0", bean.getVersion());
 			assertEquals("1080X1920", bean.getResolution());

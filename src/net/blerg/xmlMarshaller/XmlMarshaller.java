@@ -30,7 +30,7 @@ public class XmlMarshaller<T> {
 
 	public T read(InputStream inputStream) throws InstantiationException,
 			IllegalAccessException {
-
+		
 		T marshalledObject = clazz.newInstance();
 		Field[] fields = clazz.getDeclaredFields();
 
