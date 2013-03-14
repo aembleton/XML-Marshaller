@@ -1,6 +1,6 @@
 # XML Marshaller
 
-This is a simple library for marshalling values from an XML file into POJOs using Xpaths.  There's still quite a bit of work to go on this, especially around supporting more types.  Currently only int, Integer, String and Boolean are supported.
+This is a simple library for marshalling values from an XML file into POJOs using Xpaths.  There's still quite a bit of work to go on this, especially around supporting more types.  Currently only int, Integer, String and Boolean are supported.  Sets are supported and are instantiated as a HashSet.  Lists are instantiated as LinkedLists.
 
 ## Examples
 
@@ -85,7 +85,7 @@ StringSetBean bean = marshall.read(fin);
 
 assertEquals(2, bean.getNames().size());
 			
-	for (String name : bean.getNames()) {
-		assertTrue("version".equals(name)||"resolution".equals(name));
-	}
+for (String name : bean.getNames()) {
+	assertTrue("version".equals(name)||"resolution".equals(name));
+}
 ```
