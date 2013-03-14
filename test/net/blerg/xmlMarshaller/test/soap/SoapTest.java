@@ -3,10 +3,15 @@ package net.blerg.xmlMarshaller.test.soap;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 
 import net.blerg.xmlMarshaller.XmlMarshaller;
 
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 import junit.framework.TestCase;
 
@@ -39,6 +44,18 @@ public class SoapTest extends TestCase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail();
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

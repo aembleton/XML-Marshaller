@@ -1,17 +1,44 @@
-<project default="jar">
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="jar" name="jar">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+	<property name="jarName" value="xmlMarshaller-0.1.0.jar"/>
+	
+    <target name="init" depends="clean">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
     <target name="clean">
         <delete dir="bin"/>
     </target>
-
-    <target name="compile" depends="clean">
-        <mkdir dir="bin"/>
-        <javac srcdir="src" destdir="bin"/>
+    <target depends="clean" name="cleanall"/>
+	
+	<target name="build" depends="init">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+        </javac>
     </target>
-
-    <target name="jar" depends="compile">
-        <jar destfile="xmlMarshaller-0.1.0.jar" basedir="bin">
-        </jar>
-    </target>
+	
+	<target name="removeOldXmlMarshallerJar">
+		<delete>
+			<fileset file="${jarName}" />
+		</delete>
+	</target>
+	
+	<target name="buildJar" depends="build, removeOldXmlMarshallerJar">
+		<jar destfile="${jarName}" basedir="bin" includes="**/*.class **/*.properties **/*.jar **/*.vm" />
+	</target>
+	
+	<target name="jar" depends="buildJar" >
+		<!-- jar has been built, now just remove the bin directory so that it doesn't polute the dev environment -->
+		<delete dir="bin"/>
+	</target>
 
 </project>

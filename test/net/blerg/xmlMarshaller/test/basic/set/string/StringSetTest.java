@@ -1,4 +1,4 @@
-package net.blerg.xmlMarshaller.test.bool;
+package net.blerg.xmlMarshaller.test.basic.set.string;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,23 +15,23 @@ import org.xml.sax.SAXException;
 
 import junit.framework.TestCase;
 
-public class BooleanTest extends TestCase{
+public class StringSetTest extends TestCase {
 
-	private static final String XML_FILE = "testResources"+File.separator+"boolean.xml";
-	
+	private static final String XML_FILE = "testResources" + File.separator + "stringSet.xml";
+
 	@Test
-	public void testBoolean() {
-		XmlMarshaller<BooleanBean> marshall = new XmlMarshaller<BooleanBean>(BooleanBean.class);
+	public void testBasic() {
+		XmlMarshaller<StringSetBean> marshall = new XmlMarshaller<StringSetBean>(StringSetBean.class);
 		try {
 			FileInputStream fin = new FileInputStream(XML_FILE);
-			BooleanBean bean =marshall.read(fin);
+			StringSetBean stringSetBean = marshall.read(fin);
+
+			assertEquals(2, stringSetBean.getNames().size());
 			
-			assertEquals("1234",bean.getAlias());
-			assertEquals("15.0", bean.getVersion());
-			assertEquals("1080X1920", bean.getResolution());
-			assertTrue(bean.isInstalled());
-			assertFalse(bean.isEnabled());
-			
+			for (String name : stringSetBean.getNames()) {
+				assertTrue("version".equals(name)||"resolution".equals(name));
+			}
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,15 +47,19 @@ public class BooleanTest extends TestCase{
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			fail();
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			fail();
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			fail();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			fail();
 		}
 	}
 

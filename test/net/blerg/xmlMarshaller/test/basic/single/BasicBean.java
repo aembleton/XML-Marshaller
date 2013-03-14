@@ -1,4 +1,4 @@
-package net.blerg.xmlMarshaller.test.basic;
+package net.blerg.xmlMarshaller.test.basic.single;
 
 import net.blerg.xmlMarshaller.Xpath;
 
@@ -18,4 +18,6 @@ public class BasicBean {
 		return resolution;
 	}
 	
+	
+
 }

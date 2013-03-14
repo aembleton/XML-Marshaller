@@ -10,5 +10,7 @@ import java.lang.annotation.Target;
 public @interface Xpath {
 
 	public String value();
+	
+	public Class<?> clazz() default Object.class;
 
 }
