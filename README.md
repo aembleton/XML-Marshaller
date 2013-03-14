@@ -58,7 +58,7 @@ assert("1080X1920".equals(bean.getResolution));
 
 XmlMarshaller.read takes an InputStream.  The asserts demonstrate what you'd see populated inside the bean.
 
-### Get all of the names as a set
+### Get all of the names as a Set
 
 Create the following POJO, and annotate as you can see below:
 
