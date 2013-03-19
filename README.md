@@ -89,3 +89,85 @@ for (String name : bean.getNames()) {
 	assertTrue("version".equals(name)||"resolution".equals(name));
 }
 ```
+
+### Example of a nested Set
+With the following XML:
+```
+<rdr>
+  <details>
+    <detail>
+    	<sums>
+	    	<sum>
+	        	<name>version</name>
+	        </sum>
+	        <sum>
+	        	<name>hello</name>
+	        </sum>
+	        <sum>
+	        	<name>world</name>
+	        </sum>
+	        <value>15.0</value>
+        </sums>
+    </detail>
+    <detail>
+    	<sums>
+    		<sum>
+        		<name>resolution</name>
+        	</sum>
+        </sums>
+        <value>1080X1920</value>
+    </detail>
+  </details>
+</rdr>
+```
+we can create the following POJO to represent Detail:
+```
+public class DetailBean {
+
+	@Xpath(value=".//name", clazz=String.class)
+	private Set<String> names;
+	
+	public Set<String> getNames(){
+		return names;
+	}
+}
+```
+Note, that the given XPath for the Set of names is `.//name`.  If you miss of the initial `.` then the names field will be populated with all names across the whole document.
+
+The following POJO represents the whole document and contains a Set of DetailBean objects:
+```
+public class NestedStringSetBean {
+
+	@Xpath(value = "//detail", clazz = DetailBean.class)
+	private Set<DetailBean> details;
+
+	public Set<DetailBean> getDetails() {
+		return details;
+	}
+}
+```
+The marshalling is triggered in the usaul way (as in the previous examples) and the following is an example of a unit test for this where `XML_FILE` is the location of the XML input file:
+```
+XmlMarshaller<NestedStringSetBean> marshall = new XmlMarshaller<NestedStringSetBean>(NestedStringSetBean.class);
+
+FileInputStream fin = new FileInputStream(XML_FILE);
+NestedStringSetBean stringSetBean = marshall.read(fin);
+
+assertEquals(2, stringSetBean.getDetails().size());
+
+for (DetailBean detail : stringSetBean.getDetails()) {
+	if (detail.getNames().size() == 1) {
+		assertEquals("resolution", detail.getNames().toArray()[0]);
+		continue;
+	}
+	if (detail.getNames().size() == 3) {
+		// iterate over them
+		for (String name : detail.getNames()) {
+			assertTrue("version".equals(name) || "hello".equals(name) || "world".equals(name));
+		}
+		continue;
+	}
+
+	fail("Detail has " + detail.getNames().size() + " names");
+}
+```
